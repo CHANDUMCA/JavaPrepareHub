@@ -1,6 +1,10 @@
 package com.sunrizeit.interview;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Pgm1_ReverseString {
     public static void main(String[] args) {
@@ -17,6 +21,9 @@ public class Pgm1_ReverseString {
             method3(input);
         } else if (option == 4) {
             method4(option,input);
+        }
+        else if (option == 5) {
+            method5(option,input);
         }
 
     }
@@ -55,6 +62,17 @@ public class Pgm1_ReverseString {
         char[] arr = input.toCharArray();
         for (int i = arr.length - 1; i >= 0; i--)
             System.out.print(arr[i]);
+    }
+    
+    //Using streams
+    public static void method5(int option, String input) {
+    	List<Character> lis=input.chars().mapToObj(c->(char) c).collect(Collectors.toList());
+    	System.out.println(lis);
+    	Collections.reverse(lis);
+    	System.out.println(lis.stream()
+    	        .map(String::valueOf)
+    	        .collect(Collectors.joining()));
+    	
     }
 }
 
